@@ -9,7 +9,7 @@ void part1(char *file_path) {
     FILE *f = NULL;
     char buf[BUF_CAP];
     int sum = 0;
-    int p1, p2, p2s;
+    int p2, p2s;
 
     f = fopen(file_path, "r");
     if (f == NULL) {
@@ -20,12 +20,11 @@ void part1(char *file_path) {
     while (!feof(f)) {
         fgets(buf, BUF_CAP, f);
 
-        p1 = buf[0];
         p2 = buf[2];
         p2s = 0;
 
         if (!feof(f)) {
-            switch (p1) {
+            switch (buf[0]) {
                 case 'A': // rock
                     p2s += (p2 == 'X' ? 3 : (p2 == 'Z' ? 0 : 6 ));
                     break;
@@ -51,7 +50,7 @@ void part2(char *file_path) {
     FILE *f = NULL;
     char buf[BUF_CAP];
     int sum = 0;
-    int p1, p2, p2s;
+    int p2, p2s;
 
     f = fopen(file_path, "r");
     if (f == NULL) {
@@ -62,14 +61,13 @@ void part2(char *file_path) {
     while (!feof(f)) {
         fgets(buf, BUF_CAP, f);
 
-        p1 = buf[0];
         p2 = buf[2];
         p2s = 0;
 
-        p2s = (p2 == 'X' ? 0 : (p2 == 'Y' ? 3 : 6 ));
-
         if (!feof(f)) {
-            switch (p1) {
+            p2s = (p2 == 'X' ? 0 : (p2 == 'Y' ? 3 : 6 ));
+
+            switch (buf[0]) {
                 case 'A': // rock
                     p2 = (p2 == 'X' ? 'Z' : (p2 == 'Y' ? 'X' : 'Y' ));
                     break;
@@ -80,6 +78,7 @@ void part2(char *file_path) {
                     p2 = (p2 == 'X' ? 'Y' : (p2 == 'Y' ? 'Z' : 'X' ));
                     break;
             }
+
             p2s += (p2 == 'X' ? 1 : (p2 == 'Y' ? 2 : 3));
             sum += p2s;
         }
