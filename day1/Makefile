@@ -1,4 +1,4 @@
-CFLAGS += -Wall -lm
+CFLAGS += -Wall
 SAMPLE_FILES = sample.txt input.txt
 
 main: main.c
